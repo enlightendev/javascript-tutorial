@@ -20,7 +20,7 @@
  initialization time and memory consumption.
  */
 
-test("Object Characteristics & Properties", function(){
+QUnit.test("Object Basics: object literal", function(assert){
 
     /* Object literals */
     var empty_obj = {};
@@ -34,7 +34,7 @@ test("Object Characteristics & Properties", function(){
     //we can even add/augment properties after obj literal is defined
     basic_obj.ssn = '123456789';
 
-    equal(basic_obj.ssn, '123456789', 'Create obj property');
+    assert.equal(basic_obj.ssn, '123456789', 'added ssn property after literal was created');
 
     /* Complex object literal with objects as properties */
     var parent = {
@@ -65,24 +65,29 @@ test("Object Characteristics & Properties", function(){
         }
     };
 
-    equal(typeof(parent), 'object', 'checking typeof parent');
-    equal(typeof(parent.name), 'string', 'checking typeof parent.name');
-    equal(parent['wife']['name'], 'Mrs', 'accessing properties using bracket operator');
-    equal(parent.wife.name, 'Mrs', 'accessing properties using dot operator');
-    equal(parent.childCount(),2,'How many children');
-    equal(parent.children[0].name, 'Jr', 'checking object property retrieval');
+    assert.equal(typeof(parent), 'object', 'checking typeof parent = object');
+
+    assert.equal(typeof(parent.name), 'string', 'checking typeof parent.name = string');
+
+    assert.equal(parent['wife']['name'], 'Mrs', 'accessing properties using bracket operator -> parent[\'wife\'][\'name\']');
+
+    assert.equal(parent.wife.name, 'Mrs', 'accessing properties using dot operator -> parent.wife.name');
+
+    assert.equal(parent.childCount(),2,'Check number of children using childCount function');
+
+    assert.equal(parent.children[0].name, 'Jr', 'checking object property retrieval');
 
 
     //updating
     parent.name = "Juan";
-    equal(parent.name, 'Juan', 'checking object property setting');
+    assert.equal(parent.name, 'Juan', 'updating object property -> ');
 
     //augmenting with attribute not already in original def.
     parent.tool = {
         model: 'Makita'
     };
 
-    equal(parent.tool.model, 'Makita', 'checking augmenting object with an object property');
+    assert.equal(parent.tool.model, 'Makita', 'checking augmenting object with an object property');
 
     //augmenting with method not already in original def.
     parent.discipline = function(childName){
@@ -92,7 +97,7 @@ test("Object Characteristics & Properties", function(){
 
             //discipline and keep in list
             if(element.name == childName){
-                element.disciplinedCount = element.disciplinedCount +1;
+                element.disciplinedCount = element.disciplinedCount + 1;
                 return true;
             }else{
                 return false;
@@ -102,20 +107,19 @@ test("Object Characteristics & Properties", function(){
 
     parent.discipline("Jr");
 
-    equal(parent.children[0].disciplinedCount,1,'Got disciplined');
-    equal(parent.children[1].disciplinedCount,0,'Did not get disciplined');
+    assert.equal(parent.children[0].disciplinedCount,1,'Got disciplined');
+    assert.equal(parent.children[1].disciplinedCount,0,'Did not get disciplined');
 
 
     parent.discipline("Jr");
     parent.discipline("Jr2");
 
-    equal(parent.children[0].disciplinedCount,2,'Bad kid');
-    equal(parent.children[1].disciplinedCount,1,'First time is a charm.');
+    assert.equal(parent.children[0].disciplinedCount,2,'Bad kid');
+    assert.equal(parent.children[1].disciplinedCount,1,'First time is a charm.');
 
 
     /* enumerating object props */
-    var name;
-    for (name in parent) {
+    for (var name in parent) {
         if (typeof parent[name] !== 'function') {
             //console.log(name + ': ' + parent[name] + " type:" + typeof(parent[name]));
         }
@@ -129,12 +133,12 @@ test("Object Characteristics & Properties", function(){
     }
 
     delete parent.age;
-    equal(parent.age,undefined,'deleted property');
+    assert.equal(parent.age,undefined,'deleted property');
 
 });
 
 
-test('Object Finder',function(){
+QUnit.test('Object Finder',function(assert){
 
     var vehicle1 = {type: "Motorboat", capacity: 6, storedAt: "Ammunition Depot"};
     var vehicle2 = {type: "Jet Ski", capacity: 1, storedAt: "Reef Dock"};
@@ -160,6 +164,6 @@ test('Object Finder',function(){
     };
 
     var v = findLocation('Submarine',vehicles);
-    equal(v,'Underwater Outpost','locating on object in array of objects.');
+    assert.equal(v,'Underwater Outpost','locating on object in array of objects.');
 
 });

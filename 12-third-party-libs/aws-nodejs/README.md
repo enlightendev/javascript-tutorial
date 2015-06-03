@@ -1,1 +1,0 @@
-see separate node-aws project
