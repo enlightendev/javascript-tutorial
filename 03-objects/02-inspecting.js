@@ -1,7 +1,7 @@
 /**
  *
  */
-test("Inspecting Objects: getOwnPropertyDescriptor", function () {
+QUnit.test("Inspecting Objects: getOwnPropertyDescriptor", function (assert) {
 
     var o = {
         foo: 'bar'
@@ -10,11 +10,11 @@ test("Inspecting Objects: getOwnPropertyDescriptor", function () {
     // Object {value: "bar", writable: true, enumerable: true, configurable: true}
     console.log(Object.getOwnPropertyDescriptor(o, 'foo'));
 
-    ok(Object.getOwnPropertyDescriptor(o, 'foo').writable, 'default is writable.');
+    assert.ok(Object.getOwnPropertyDescriptor(o, 'foo').writable, 'default is writable.');
 
 });
 
-test("Inspecting Objects: getOwnPropertyNames", function () {
+QUnit.test("Inspecting Objects: getOwnPropertyNames", function (assert) {
 
     var box = Object.create({}, {
         openLid: {
@@ -34,15 +34,15 @@ test("Inspecting Objects: getOwnPropertyNames", function () {
 
     console.log('Object.getOwnPropertyNames(box) ---> ' + Object.getOwnPropertyNames(box).sort());
 
-    ok(Object.getOwnPropertyNames(box).length === 2, 'Object.getOwnPropertyNames lists all properties enumerable or not');
+    assert.ok(Object.getOwnPropertyNames(box).length === 2, 'Object.getOwnPropertyNames lists all properties enumerable or not');
 
 });
 
-test("Inspecting Objects: getPrototypeOf", function () {
+QUnit.test("Inspecting Objects: getPrototypeOf", function (assert) {
 
     var a = {};
 
-    ok(Object.getPrototypeOf(a) === Object.prototype, 'Object.getPrototypeOf(a) === Object.prototype');
+    assert.ok(Object.getPrototypeOf(a) === Object.prototype, 'Object.getPrototypeOf(a) === Object.prototype');
 
 });
 
@@ -52,7 +52,7 @@ test("Inspecting Objects: getPrototypeOf", function () {
  * but somewhere in the prototype chain. The hasOwnProperty method allows you to identify whether
  * the property in question is present on the object instance
  */
-test("Inspecting Objects: hasOwnProperty", function () {
+QUnit.test("Inspecting Objects: hasOwnProperty", function (assert) {
 
     var foo = {
         foo: 'foo'
@@ -83,7 +83,7 @@ test("Inspecting Objects: hasOwnProperty", function () {
 
     console.log(myProperties);
 
-    ok(myProperties.length = 2, 'hasOwnProperty only shows immediate properties.');
+    assert.ok(myProperties.length = 2, 'hasOwnProperty only shows immediate properties.');
 
 });
 

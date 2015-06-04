@@ -12,7 +12,7 @@
 
  Compare with Ruby's open classes.
  */
-test("Augmenting Function", function(){
+QUnit.test("Augmenting Function", function(assert){
 
     /*
      By augmenting Function.prototype with a method method, we no longer have
@@ -41,6 +41,6 @@ test("Augmenting Function", function(){
         return this.replace(/^\s+|\s+$/g, '');
     });
 
-    equal("My name is    ".trim(),"My name is","Testing augmented trim() function");
+    assert.equal("My name is    ".trim(),"My name is","Testing augmented trim() function");
 
 });

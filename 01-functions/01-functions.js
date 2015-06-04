@@ -26,15 +26,15 @@
  Implicit function parameters -
  all function invocations are also passed two implicit parameters: arguments and this
  */
-test("Implicit Parameters - arguments", function(){
+QUnit.test("Implicit Parameters - arguments", function(assert){
 
     var myFuncImplied = function(a){
         return(arguments.length);
     };
 
-    equal(myFuncImplied(1),1,"argument length");
+    assert.equal(myFuncImplied(1),1,"argument length");
 
-    equal(myFuncImplied(1,2),2,"extra arguments"); //notice how js will accept more params w/o throwing error
+    assert.equal(myFuncImplied(1,2),2,"extra arguments"); //notice how js will accept more params w/o throwing error
 
 });
 
@@ -69,7 +69,7 @@ test("Implicit Parameters - arguments", function(){
  and is available within the function via the this parameter.
  */
 
-test("Method Invocation", function(){
+QUnit.test("Method Invocation", function(assert){
 
     var myObject = {
 
@@ -80,13 +80,13 @@ test("Method Invocation", function(){
         increment: function(inc){
             this.value += typeof inc === 'number' ? inc : 1;
         }
-    }
+    };
 
     myObject.increment();
-    equal(myObject.value,1,"method invoke 1");
+    assert.equal(myObject.value,1,"method invoke 1");
 
     myObject.increment(2);
-    equal(myObject.value,3,"method invoke 2");
+    assert.equal(myObject.value,3,"method invoke 2");
 
 });
 
@@ -96,7 +96,7 @@ test("Method Invocation", function(){
  When a function is invoked with this pattern, this is bound to the global object/context — the window object.
  I.E. implicitness of the window as the “owner” of the function - window is set as the function context
  */
-test("Function Invocation", function(){
+QUnit.test("Function Invocation", function(assert){
 
     //Function objects are created with function literals
     var add = function (a, b) {
@@ -142,7 +142,7 @@ test("Function Invocation", function(){
     myObject.increment(2);
     myObject.double();
 
-    equal(myObject.value,4,"value");
+    assert.equal(myObject.value,4,"value");
 
 });
 

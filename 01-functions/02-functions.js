@@ -17,7 +17,7 @@
  from first appearance in the code body to the last.
 
  */
-test('Scoping & Hoisting 1', function(){
+QUnit.test('Scoping & Hoisting 1', function(assert){
 
 
     function sumOfSquares(a,b){
@@ -37,11 +37,11 @@ test('Scoping & Hoisting 1', function(){
         }
     }
 
-    equal(sumOfSquares(3,4), 25, 'Hoisting example 1');
+    assert.equal(sumOfSquares(3,4), 25, 'Hoisting example 1');
 
 });
 
-test('Scoping & Hoisting - Function Expressions', function(){
+QUnit.test('Scoping & Hoisting - Function Expressions', function(assert){
 
     //function expresions are never hoisted
     function sumOfSquares(a,b){
@@ -66,11 +66,11 @@ test('Scoping & Hoisting - Function Expressions', function(){
         }
     }
 
-    equal(sumOfSquares(3,4), 25, 'hoisting function expressions');
+    assert.equal(sumOfSquares(3,4), 25, 'hoisting function expressions');
 
 });
 
-test('Scoping & Hoisting 2', function(){
+QUnit.test('Scoping & Hoisting 2', function(assert){
 
     var a = 1;
     function b() {
@@ -78,15 +78,17 @@ test('Scoping & Hoisting 2', function(){
         return;
         function a() {}
     }
+
     b();
-    equal(a,1,'scoping 2');
+
+    assert.equal(a,1,'scoping 2');
 });
 
 /*
  Only functions create new scope. Thus the second var x overwrites first
  and remains in on the final test.
  */
-test('Scoping & Hoisting 3', function(){
+QUnit.test('Scoping & Hoisting 3', function(assert){
 
     var x = 1;
     equal(x,1,'var at function level');
@@ -98,12 +100,12 @@ test('Scoping & Hoisting 3', function(){
     }
 
     //x is still 2 because if(true) block did not create new scope
-    equal(x,2,'if(true) block did not create new scope');
+    assert.equal(x,2,'if(true) block did not create new scope');
 
 });
 
 
-test('Temporay scope withn function', function(){
+QUnit.test('Temporary scope within function', function(assert){
 
     function foo() {
         var x = 1;
@@ -119,7 +121,7 @@ test('Temporay scope withn function', function(){
         }
 
         // x is still 1.
-        equal(x,1,'x = 1 and ');
+        assert.equal(x,1,'x = 1 and ');
 
     }
 

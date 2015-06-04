@@ -1,5 +1,5 @@
 
-test("Function Characteristics & Properties", function(){
+QUnit.test("Function Characteristics & Properties", function(assert){
 
     //typical function
     function doSomething(){
@@ -7,7 +7,7 @@ test("Function Characteristics & Properties", function(){
     }
 
     //A function is an instance of the Object type:
-    ok(doSomething instanceof Object, "Are functions instances of object?");
+    assert.ok(doSomething instanceof Object, "Functions are instances of object!");
 
     //A function can have properties and has a link back to its constructor method:
     doSomething.propertyA = "propA";
@@ -34,7 +34,7 @@ test("Function Characteristics & Properties", function(){
     var tonight = tonightChores();
 
     //returns a function that can be executed!
-    equal(tonight(), "called doSomething()", "returning function from a function.");
+    assert.equal(tonight(), "called doSomething()", "returning function from a function.");
 
     //Array of anonymous functions.
     var puzzlers = [
@@ -44,7 +44,7 @@ test("Function Characteristics & Properties", function(){
         function(x){return x%4;}
     ];
 
-    equal(puzzlers[0](5),7,"Puzzler 1");
-    equal(puzzlers[2](3),0,"Puzzler 2");
+    assert.equal(puzzlers[0](5),7,"Puzzler 1");
+    assert.equal(puzzlers[2](3),0,"Puzzler 2");
 
 });
