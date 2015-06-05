@@ -87,4 +87,46 @@ QUnit.test("Inspecting Objects: hasOwnProperty", function (assert) {
 
 });
 
+QUnit.test("Inspecting Objects: Object.keys & isFrozen", function(assert){
+
+    var box = Object.create({}, {
+        openLid: {
+            value: function(){
+                return "nothing";
+            },
+            enumerable: true
+        },
+        openSecret: {
+            value: function(){
+                return "treasure"
+            },
+            enumerable: false
+        }
+    });
+
+    assert.ok(Object.keys(box).length === 1, 'Object.keys(box) only returns enumerable objects');
+
+
+    var extendableObject = {
+        wrapping: 'plastic',
+        flavors: ['cherry','lime']
+    };
+
+    assert.ok(!Object.isFrozen(extendableObject), 'basic object literal is extendable.');
+
+    Object.freeze(extendableObject);
+
+    delete extendableObject.wrapping;
+
+    assert.equal(extendableObject.wrapping,'plastic','Object.freeze prevents object from being modified.')
+
+    assert.ok(Object.isFrozen(extendableObject), 'Object is frozen.');
+});
+
+//continue with isPrototypeOf
+
+
+
+
+
 

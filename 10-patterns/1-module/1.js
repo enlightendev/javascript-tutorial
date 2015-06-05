@@ -3,14 +3,17 @@ var testModule = (function () {
     return {
 
         printCounter: function() {
-            console.log('counter value:' + counter);
+            console.log('counter value: ' + counter);
         },
 
         incrementCounter: function () {
-            return counter++;
+            counter++;
+            console.log('incrementing: ' + counter);
+            return counter;
         },
+
         resetCounter: function () {
-            console.log('counter value prior to reset:' + counter);
+            console.log('counter value prior to reset: ' + counter);
             counter = 0;
         }
     };
@@ -18,5 +21,6 @@ var testModule = (function () {
 
 // test
 testModule.printCounter();
+testModule.incrementCounter();
 testModule.incrementCounter();
 testModule.resetCounter();

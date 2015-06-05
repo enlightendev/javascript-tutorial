@@ -11,20 +11,23 @@ QUnit.test("Function Characteristics & Properties", function(assert){
 
     //A function can have properties and has a link back to its constructor method:
     doSomething.propertyA = "propA";
-    console.log(doSomething.propertyA);
-    console.log(doSomething.constructor);
+
+    //the fact that functions can have properties and other functions allows them to simulate classes.
+    assert.equal(doSomething.propertyA,'propA', 'functions can have properties.');
+
+    //console.log(doSomething.constructor);
 
     //You can store the function in a variable:
     var doit = doSomething;
-    doit();
+    assert.equal(doit(), 'called doSomething()', 'you can store a function as a variable and call it');
 
     //You can pass the function as a parameter to another function:
     function doTasks(tasks){
         for(var x=0; x<tasks .length; x++)
-            tasks[x]();
+            console.log(tasks[x]());
     }
 
-    doTasks([doit]);  //pass doit in array
+    doTasks([doit,doit]);  //pass doit in array
 
     //You can return the function from a function:
     function tonightChores(){

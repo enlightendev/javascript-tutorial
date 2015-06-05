@@ -42,8 +42,10 @@ QUnit.test("Implicit Parameters - arguments", function(assert){
 /*
  INVOCATION
  The manner in which a function is invoked has a huge impact on how the code within it operates,
- primarily in how the this parameter is established. Every function receives two additional parameters: this and arguments.
- The this paramerer value is determined by the invocation pattern.
+ primarily in how the this parameter is established. Every function receives two additional
+ parameters: this and arguments.
+
+ The this parameter value is determined by the invocation pattern.
 
  The this parameter refers to an object that’s implicitly associated with the function
  invocation and is termed the function context.
@@ -59,8 +61,8 @@ QUnit.test("Implicit Parameters - arguments", function(assert){
 
 /* -----------------------------------------------------
  Method  -
- When a function is assigned to a property of an object (we call it a method) and the invocation occurs by referencing
- the function using that property, then the function is invoked as a method of that object.
+ When a function is assigned to a property of an object (we call it a method) and the invocation occurs
+ by referencing the function using that property, then the function is invoked as a method of that object.
 
  When a method is invoked, this is bound to that object. if you come from any object-oriented
  background, you’ll remember that the object to which a method belongs is available
