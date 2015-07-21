@@ -50,7 +50,8 @@ QUnit.test("Implicit Parameters - arguments", function(assert){
  The this parameter refers to an object that’s implicitly associated with the function
  invocation and is termed the function context.
 
- What the this parameter points to isn’t, as in Java, defined by how the function is declared, but by how it’s invoked.
+ What the this parameter points to isn’t, as in Java, defined by how the function is declared,
+ but by how it’s invoked.
 
  There are four patterns of invocation in JavaScript:
  - function invocation pattern ,
@@ -139,12 +140,15 @@ QUnit.test("Function Invocation", function(assert){
         };
 
         helper();//Invoke helper as a function.
+
+        //ALTERNATIVELY JUST USE IT THIS WAY
+        //that.value = add(that.value, that.value);
     };
 
     myObject.increment(2);
     myObject.double();
 
-    assert.equal(myObject.value,4,"value");
+    assert.equal(myObject.value,4,"using 'var that = this'");
 
 });
 
@@ -158,11 +162,11 @@ test("Method Vs. Function Invocation", function(){
     //function that returns its context
     function creep(){return this;}
 
-    equal(creep(), window, "function context is gloabal scope, i.e. window?");
+    equal(creep(), window, "function context is global scope, i.e. window?");
 
     var sneak = creep;
 
-    equal(sneak(), window, "function context is still gloabal scope, i.e. window?");
+    equal(sneak(), window, "function context is still global scope, i.e. window?");
 
     var ninja1 = {
         //skulk property that references original creep function - rememeber this function rteturns its context
@@ -172,7 +176,8 @@ test("Method Vs. Function Invocation", function(){
     equal(ninja1.skulk(), ninja1, "check for context"); //window/gloabl woudl fail
 
     var ninja2 = {
-        //skulk property that references original creep function - rememeber this function rteturns its context
+        //skulk property that references original creep function - remember
+        //this function returns its context
         skulk: creep
     };
 
@@ -211,7 +216,7 @@ test("Constructor Invocation", function(){
 });
 
 /*
- Apply inocation pattern
+ Apply invocation pattern
 
  The apply method lets us construct an array of arguments to use to invoke a function.
  It also lets us choose the value of this. The apply method takes two parameters.

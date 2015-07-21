@@ -1,30 +1,45 @@
 
 QUnit.test("Function Characteristics & Properties", function(assert){
 
-    //typical function
-    function doSomething(){
-        return "called doSomething()";
+    /**
+     * this function declaration style builds in memory immediately when the program loads.
+     * @returns {string}
+     */
+    function diffOfSquares(a,b){
+        return a*a - b*b;
     }
 
+    /**
+     * function expression
+     * this function declaration style builds only when the declaration line is reached.
+     * @param a
+     * @param b
+     * @returns {number}
+     */
+    var diff = function diffOfSquares(a,b){
+        return a*a - b*b;
+    };
+
     //A function is an instance of the Object type:
-    assert.ok(doSomething instanceof Object, "Functions are instances of object!");
+    assert.ok(diffOfSquares instanceof Object, "Functions are instances of object!");
+    assert.ok(diff instanceof Object, "Functions are instances of object!");
 
     //A function can have properties and has a link back to its constructor method:
-    doSomething.propertyA = "propA";
+    diffOfSquares.propertyA = "propA";
 
     //the fact that functions can have properties and other functions allows them to simulate classes.
-    assert.equal(doSomething.propertyA,'propA', 'functions can have properties.');
+    assert.equal(diffOfSquares.propertyA,'propA', 'functions can have properties.');
 
     //console.log(doSomething.constructor);
 
     //You can store the function in a variable:
-    var doit = doSomething;
-    assert.equal(doit(), 'called doSomething()', 'you can store a function as a variable and call it');
+    var doit = diff;
+    assert.equal( doit(3,2) , 5, 'you can store a function as a variable and call it');
 
     //You can pass the function as a parameter to another function:
     function doTasks(tasks){
         for(var x=0; x<tasks .length; x++)
-            console.log(tasks[x]());
+            console.log( tasks[x](3,5) );
     }
 
     doTasks([doit,doit]);  //pass doit in array
@@ -37,7 +52,7 @@ QUnit.test("Function Characteristics & Properties", function(assert){
     var tonight = tonightChores();
 
     //returns a function that can be executed!
-    assert.equal(tonight(), "called doSomething()", "returning function from a function.");
+    assert.equal(tonight(3,2), 5, "returning function from a function.");
 
     //Array of anonymous functions.
     var puzzlers = [

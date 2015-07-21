@@ -38,11 +38,19 @@ QUnit.test("Inspecting Objects: getOwnPropertyNames", function (assert) {
 
 });
 
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf
+ */
 QUnit.test("Inspecting Objects: getPrototypeOf", function (assert) {
 
-    var a = {};
+    var parentObj = {};
 
-    assert.ok(Object.getPrototypeOf(a) === Object.prototype, 'Object.getPrototypeOf(a) === Object.prototype');
+    assert.ok(Object.getPrototypeOf(parentObj) === Object.prototype, 'Object.getPrototypeOf(parentObj) === Object.prototype');
+
+    //obj inherits from a
+    var childObj = Object.create(parentObj);
+
+    assert.ok(Object.getPrototypeOf(childObj) === parentObj, 'Object.getPrototypeOf(childObj) === parentObj');
 
 });
 

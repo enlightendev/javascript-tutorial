@@ -2,6 +2,11 @@
 
 Project used to demonstrate javascript api's, language constructs, best practices, etc.
 
+## Javascript
+
+### object api
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+
 ## Resources
 
 qunit cookbook: http://qunitjs.com/cookbook/
